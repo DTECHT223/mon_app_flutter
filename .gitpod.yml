@@ -1,15 +1,26 @@
-image: gitpod/workspace-flutter
-tasks:
- -init: flutter create . && flutter pub get
-  command: flutter run -d web-server --web-port 8080
+# Configuration Gitpod pour une application Flutter
 
-ports:
- - port: 8080
-   onOpen: open-preview
-   visibility: public
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - name: Préparation Flutter
+    command: |
+      flutter pub get
+
+  - name: Lancer application
+    command: |
+      # Remplacez 'main.dart' par le chemin approprié si nécessaire
+      flutter run
 
 vscode:
- extentions:
-  - dart-code.flutter
-  - dart-code.dart-code
- 
+  extensions:
+    - Dart-Code.flutter
+
+ports:
+  - port: 8080
+    onOpen: open-preview
+
+# (optionnel) Commandes à exécuter au démarrage
+init:
+  - flutter doctor
